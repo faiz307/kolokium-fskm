@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laman Rasmi | Kolokium Penyelidikan FSKM 2026</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'uitm-purple': '#3a1c52',
+                        'uitm-gold': '#ffcc00',
+                        'accent-pink': '#ec4899',
+                        'accent-violet': '#8b5cf6',
+                        'accent-cyan': '#06b6d4',
+                        'dark-bg': '#0f172a',
+                        'dark-card': '#1e293b',
+                    },
+                    fontFamily: {
+                        'sans': ['"Plus Jakarta Sans"', 'sans-serif'],
+                        'display': ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom CSS untuk kesan Visual Premium */
+        body {
+            background-color: #0b0f19;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .mesh-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(at 80% 0%, rgba(58, 28, 82, 0.8) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(139, 92, 246, 0.4) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.4) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(6, 182, 212, 0.3) 0px, transparent 50%);
+            z-index: -2;
+            opacity: 0.8;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            z-index: -1;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 204, 0, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(to right, #ffcc00, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #ffcc00, #f59e0b);
+            color: #3a1c52;
+            transition: all 0.3s;
+        }
+        
+        .btn-gold:hover {
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .btn-outline {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            border-color: #ffcc00;
+            color: #ffcc00;
+            background: rgba(255, 204, 0, 0.1);
+        }
+
+        /* Timeline Styles */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased relative">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-4">
+                    <img src="LogoUiTM.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/UiTM_logo.svg/1200px-UiTM_logo.svg.png';" alt="Logo UiTM" class="h-10 bg-slate-200 p-1.5 rounded-md">
+                    <div class="hidden sm:block">
+                        <span class="font-display font-bold text-lg tracking-wider text-uitm-gold block leading-tight">FSKM</span>
+                        <span class="text-xs text-slate-400">Kampus Tapah</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#utama" class="text-sm font-medium hover:text-uitm-gold transition-colors">Utama</a>
+                    <a href="#mengenai" class="text-sm font-medium hover:text-uitm-gold transition-colors">Mengenai</a>
+                    <a href="#subtema" class="text-sm font-medium hover:text-uitm-gold transition-colors">Tema</a>
+                    <a href="#garismasa" class="text-sm font-medium hover:text-uitm-gold transition-colors">Garis Masa</a>
+                    <a href="#aturcara" class="text-sm font-medium hover:text-uitm-gold transition-colors">Aturcara</a>
+                    <a href="#pendaftaran" class="btn-gold px-6 py-2.5 rounded-full font-bold text-sm">Daftar Sekarang</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#utama" class="block px-3 py-2 text-base font-medium text-white hover:text-uitm-gold">Utama</a>
+                <a href="#mengenai" class="block px-3 py-2 text-base font-medium text-white hover:text-uitm-gold">Mengenai</a>
+                <a href="#subtema" class="block px-3 py-2 text-base font-medium text-white hover:text-uitm-gold">Tema</a>
+                <a href="#garismasa" class="block px-3 py-2 text-base font-medium text-white hover:text-uitm-gold">Garis Masa</a>
+                <a href="#pendaftaran" class="block px-3 py-2 text-base font-medium text-uitm-gold font-bold">Daftar Sekarang</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="utama" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="mesh-bg"></div>
+        <div class="grid-overlay"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-uitm-gold/30 bg-uitm-gold/10 backdrop-blur-sm mb-8 animate-bounce">
+                <span class="w-2 h-2 rounded-full bg-uitm-gold animate-pulse"></span>
+                <span class="text-xs font-semibold tracking-wider text-uitm-gold uppercase">Call for Papers Berlangsung</span>
+            </div>
+            
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight tracking-tight text-gradient">
+                KOLOKIUM PENYELIDIKAN<br>
+                <span class="text-gradient-gold">FSKM 2026</span>
+            </h1>
+            
+            <div class="inline-block p-[1px] rounded-2xl bg-gradient-to-r from-uitm-gold/50 to-accent-pink/50 mb-10">
+                <div class="bg-dark-bg/80 backdrop-blur-md px-6 py-4 rounded-2xl">
+                    <p class="font-display text-xl md:text-2xl lg:text-3xl font-light text-slate-200">
+                        "Quantitative Perspectives on Social Issues in Malaysia"
+                    </p>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="flex justify-center gap-4 md:gap-8 mb-12">
+                <div class="glass-card rounded-2xl p-4 w-20 md:w-28 text-center border-t-4 border-t-uitm-gold">
+                    <span id="days" class="font-display text-3xl md:text-5xl font-bold block text-white">00</span>
+                    <span class="text-xs md:text-sm text-slate-400 uppercase tracking-wider">Hari</span>
+                </div>
+                <div class="glass-card rounded-2xl p-4 w-20 md:w-28 text-center border-t-4 border-t-accent-pink">
+                    <span id="hours" class="font-display text-3xl md:text-5xl font-bold block text-white">00</span>
+                    <span class="text-xs md:text-sm text-slate-400 uppercase tracking-wider">Jam</span>
+                </div>
+                <div class="glass-card rounded-2xl p-4 w-20 md:w-28 text-center border-t-4 border-t-accent-cyan">
+                    <span id="minutes" class="font-display text-3xl md:text-5xl font-bold block text-white">00</span>
+                    <span class="text-xs md:text-sm text-slate-400 uppercase tracking-wider">Minit</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#pendaftaran" class="btn-gold px-8 py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-paper-plane"></i> Hantar Kertas Kerja
+                </a>
+                <a href="#garispanduan" class="btn-outline px-8 py-4 rounded-xl font-semibold text-lg flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-file-arrow-down"></i> Muat Turun Templat
+                </a>
+            </div>
+            
+            <div class="mt-16 flex flex-wrap justify-center gap-8 text-slate-300">
+                <div class="flex items-center gap-3"><i class="fa-solid fa-calendar text-uitm-gold text-xl"></i> 1 Oktober 2026</div>
+                <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-accent-pink text-xl"></i> Hibrid (UiTM Tapah)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHTS / USP SECTION -->
+    <section class="py-16 relative z-20 -mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-uitm-gold/20 to-accent-pink/20 flex items-center justify-center text-uitm-gold text-2xl mb-4 group-hover:scale-110 transition-transform border border-uitm-gold/30">
+                        <i class="fa-solid fa-book-journal-whills"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Prosiding Ber-ISBN</h3>
+                    <p class="text-sm text-slate-400">Peluang penerbitan akademik untuk pencapaian PI057 fakulti.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent-pink/20 to-accent-violet/20 flex items-center justify-center text-accent-pink text-2xl mb-4 group-hover:scale-110 transition-transform border border-accent-pink/30">
+                        <i class="fa-solid fa-medal"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">5 Anugerah Utama</h3>
+                    <p class="text-sm text-slate-400">Pengiktirafan untuk Penyelidikan, Metodologi, Inovasi, Impak & Pembentangan.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-accent-pink text-xs font-bold px-3 py-1 rounded-bl-lg">EKSKLUSIF</div>
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent-violet/20 to-accent-cyan/20 flex items-center justify-center text-accent-violet text-2xl mb-4 group-hover:scale-110 transition-transform border border-accent-violet/30">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Konsultasi Metodologi</h3>
+                    <p class="text-sm text-slate-400">Khidmat nasihat penambahbaikan reka bentuk kajian dan statistik secara percuma.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center group">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-br from-accent-cyan/20 to-uitm-gold/20 flex items-center justify-center text-accent-cyan text-2xl mb-4 group-hover:scale-110 transition-transform border border-accent-cyan/30">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Kajian Awal Diterima</h3>
+                    <p class="text-sm text-slate-400">Terbuka untuk kajian lengkap mahupun penyelidikan di peringkat awal (WIP).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENGENAI SECTION -->
+    <section id="mengenai" class="py-20 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2">
+                    <h2 class="font-display text-4xl font-bold mb-6 text-white border-l-4 border-uitm-gold pl-4">Pengenalan Kolokium</h2>
+                    <div class="space-y-6 text-slate-300 text-lg font-light leading-relaxed">
+                        <p>
+                            Kolokium Penyelidikan FSKM adalah platform dinamik yang dianjurkan oleh <strong>Fakulti Sains Komputer dan Matematik (FSKM), UiTM Cawangan Perak Kampus Tapah</strong>.
+                        </p>
+                        <p>
+                            Ia bertujuan menyediakan medium intelektual bagi pembentangan dan perkongsian kajian kuantitatif berkaitan pelbagai isu sosial di Malaysia. Kolokium ini bukan sekadar medan pembentangan, malah bertindak sebagai pusat pembangunan di mana para penyelidik boleh memperbaiki kaedah metodologi kajian mereka.
+                        </p>
+                        <ul class="space-y-3 mt-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-uitm-gold mt-1.5"></i>
+                                <span>Menyokong pencapaian petunjuk prestasi (PI057) universiti melalui penerbitan prosiding ber-ISBN.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-uitm-gold mt-1.5"></i>
+                                <span>Memupuk kolaborasi rentas fakulti.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-uitm-gold mt-1.5"></i>
+                                <span>Bimbingan teknikal bagi kajian di peringkat awal (Research-in-Progress).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="relative rounded-2xl overflow-hidden glass-panel p-2">
+                        <!-- Placeholder Image untuk Aktiviti Penyelidikan -->
+                        <div class="bg-slate-800 rounded-xl aspect-video flex items-center justify-center text-slate-500 border border-slate-700 relative overflow-hidden">
+                            <i class="fa-solid fa-microscope text-6xl opacity-20 absolute"></i>
+                            <span class="z-10"></span>
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-uitm-gold rounded-full filter blur-[80px] opacity-20"></div>
+                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-accent-pink rounded-full filter blur-[80px] opacity-20"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUB-TEMA SECTION -->
+    <section id="subtema" class="py-24 bg-dark-card/30 relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-uitm-gold font-bold tracking-widest uppercase text-sm mb-2 block">Skop Kajian</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white">Sub-Tema Kolokium</h2>
+                <p class="mt-4 text-slate-400">Kertas kerja yang mengaplikasikan metodologi kuantitatif dalam bidang-bidang berikut amat dialu-alukan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Theme Items -->
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-uitm-gold/10 flex items-center justify-center text-uitm-gold text-xl shrink-0"><i class="fa-solid fa-calculator"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">Mathematics, Statistics & Analytics</h4>
+                        <p class="text-sm text-slate-400">Pemodelan matematik, analisis statistik termaju, dan analitik data.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-accent-cyan/10 flex items-center justify-center text-accent-cyan text-xl shrink-0"><i class="fa-solid fa-laptop-code"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">Computing & Digital Tech</h4>
+                        <p class="text-sm text-slate-400">Sains komputer, kecerdasan buatan, IoT, dan teknologi maklumat.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-accent-pink/10 flex items-center justify-center text-accent-pink text-xl shrink-0"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">Business & Economics</h4>
+                        <p class="text-sm text-slate-400">Kajian ekonomi kuantitatif, kewangan, dan pengurusan perniagaan.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-accent-violet/10 flex items-center justify-center text-accent-violet text-xl shrink-0"><i class="fa-solid fa-landmark"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">Social Sciences & Policy</h4>
+                        <p class="text-sm text-slate-400">Isu sosial, demografi, dasar awam, dan sains tingkah laku.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 text-xl shrink-0"><i class="fa-solid fa-user-graduate"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">Education & Human Dev</h4>
+                        <p class="text-sm text-slate-400">Analisis pendidikan, pembangunan manusia, dan psikometrik.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 text-xl shrink-0"><i class="fa-solid fa-leaf"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">Health & Built Environment</h4>
+                        <p class="text-sm text-slate-400">Kesihatan awam, alam sekitar, dan alam bina berkelanjutan.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 rounded-xl flex items-start gap-4 md:col-span-2 lg:col-span-3 lg:w-1/2 lg:mx-auto border-uitm-gold/30">
+                    <div class="w-12 h-12 rounded-lg bg-uitm-gold/20 flex items-center justify-center text-uitm-gold text-xl shrink-0"><i class="fa-solid fa-microscope"></i></div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-1">Research-in-Progress & Methodology</h4>
+                        <p class="text-sm text-slate-400">Pembentangan reka bentuk kajian di peringkat awal dan inovasi metodologi baharu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GARIS MASA (TIMELINE) -->
+    <section id="garismasa" class="py-24 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-display text-4xl font-bold mb-16 text-center text-white border-b-2 border-uitm-gold/30 pb-4 inline-block mx-auto">Garis Masa Penting 2026</h2>
+            
+            <div class="relative timeline-container">
+                <!-- Item 1 -->
+                <div class="mb-12 flex flex-col md:flex-row justify-between items-center w-full relative z-10">
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 md:text-right">
+                        <h3 class="font-bold text-xl text-white">1 Mac 2026</h3>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-10 h-10 rounded-full bg-dark-bg border-4 border-uitm-gold flex items-center justify-center z-20">
+                        <i class="fa-solid fa-bullhorn text-uitm-gold text-xs"></i>
+                    </div>
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 glass-card p-4 rounded-xl mt-2 md:mt-0 w-[calc(100%-2.5rem)] md:w-5/12">
+                        <p class="text-slate-300">Hebahan Call for Papers & Reviewers</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="mb-12 flex flex-col md:flex-row justify-between items-center w-full relative z-10">
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 md:text-right hidden md:block">
+                        <div class="glass-card p-4 rounded-xl mt-2 md:mt-0">
+                            <p class="text-slate-300">Tarikh Akhir Penghantaran Kertas Kerja Penuh / Kertas Awal</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-10 h-10 rounded-full bg-dark-bg border-4 border-accent-pink flex items-center justify-center z-20">
+                        <i class="fa-solid fa-file-arrow-up text-accent-pink text-xs"></i>
+                    </div>
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0">
+                        <h3 class="font-bold text-xl text-white">15 Mei 2026</h3>
+                        <div class="glass-card p-4 rounded-xl mt-2 md:hidden w-[calc(100%-2.5rem)]">
+                            <p class="text-slate-300">Tarikh Akhir Penghantaran Kertas Kerja Penuh / Kertas Awal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="mb-12 flex flex-col md:flex-row justify-between items-center w-full relative z-10">
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 md:text-right">
+                        <h3 class="font-bold text-xl text-white">28 Jun 2026</h3>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-10 h-10 rounded-full bg-dark-bg border-4 border-accent-cyan flex items-center justify-center z-20">
+                        <i class="fa-solid fa-envelope-open-text text-accent-cyan text-xs"></i>
+                    </div>
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 glass-card p-4 rounded-xl mt-2 md:mt-0 w-[calc(100%-2.5rem)] md:w-5/12">
+                        <p class="text-slate-300">Pemakluman Keputusan Penerimaan oleh Jawatankuasa Penilai</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 (Highlight) -->
+                <div class="mb-12 flex flex-col md:flex-row justify-between items-center w-full relative z-10">
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 md:text-right hidden md:block">
+                        <div class="glass-card p-4 rounded-xl mt-2 md:mt-0 border-uitm-gold/50 bg-uitm-gold/10">
+                            <p class="text-uitm-gold font-semibold">Sesi Pemantapan & Khidmat Nasihat Metodologi (Pilihan)</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-10 h-10 rounded-full bg-uitm-gold shadow-[0_0_15px_rgba(255,204,0,0.6)] flex items-center justify-center z-20">
+                        <i class="fa-solid fa-handshake-angle text-dark-bg text-sm"></i>
+                    </div>
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0">
+                        <h3 class="font-bold text-xl text-uitm-gold">1-20 Julai 2026</h3>
+                        <div class="glass-card p-4 rounded-xl mt-2 md:hidden w-[calc(100%-2.5rem)] border-uitm-gold/50 bg-uitm-gold/10">
+                            <p class="text-uitm-gold font-semibold">Sesi Pemantapan & Khidmat Nasihat Metodologi (Pilihan)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="mb-12 flex flex-col md:flex-row justify-between items-center w-full relative z-10">
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 md:text-right">
+                        <h3 class="font-bold text-xl text-white">5 Ogos 2026</h3>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-10 h-10 rounded-full bg-dark-bg border-4 border-slate-400 flex items-center justify-center z-20">
+                        <i class="fa-solid fa-money-check-dollar text-slate-400 text-xs"></i>
+                    </div>
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 glass-card p-4 rounded-xl mt-2 md:mt-0 w-[calc(100%-2.5rem)] md:w-5/12">
+                        <p class="text-slate-300">Tarikh Akhir Penghantaran Versi Akhir (Camera-Ready) & Pembayaran Yuran</p>
+                    </div>
+                </div>
+
+                <!-- Item 6 (Event Day) -->
+                <div class="flex flex-col md:flex-row justify-between items-center w-full relative z-10 scale-105">
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0 md:text-right hidden md:block">
+                        <div class="bg-gradient-to-r from-accent-pink to-accent-violet p-5 rounded-xl mt-2 md:mt-0 shadow-lg shadow-accent-pink/20">
+                            <h4 class="text-white font-bold text-lg">HARI KOLOKIUM</h4>
+                            <p class="text-white/80 text-sm">Pembentangan, Perasmian & Anugerah</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-14 h-14 rounded-full bg-accent-pink shadow-[0_0_20px_rgba(236,72,153,0.8)] flex items-center justify-center z-20 border-4 border-dark-bg">
+                        <i class="fa-solid fa-flag-checkered text-white text-lg"></i>
+                    </div>
+                    <div class="order-1 md:w-5/12 ml-10 md:ml-0">
+                        <h3 class="font-display font-black text-3xl text-accent-pink">1 OKT 2026</h3>
+                        <div class="bg-gradient-to-r from-accent-pink to-accent-violet p-4 rounded-xl mt-2 md:hidden w-[calc(100%-2.5rem)]">
+                            <h4 class="text-white font-bold text-lg">HARI KOLOKIUM</h4>
+                            <p class="text-white/80 text-sm">Pembentangan, Perasmian & Anugerah</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YURAN & PENDAFTARAN -->
+    <section id="pendaftaran" class="py-20 bg-dark-card/30 border-y border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-10 items-stretch">
+                <!-- Yuran Card -->
+                <div class="lg:w-1/3 glass-panel rounded-3xl p-8 text-center flex flex-col justify-center relative overflow-hidden border-uitm-gold/30">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-uitm-gold rounded-full filter blur-[60px] opacity-20"></div>
+                    <h3 class="text-uitm-gold font-bold uppercase tracking-widest text-sm mb-4">Kadar Yuran Penyertaan</h3>
+                    <div class="font-display text-6xl font-black text-white mb-2">RM100</div>
+                    <p class="text-slate-400 mb-8">Setiap penyertaan / kertas kerja</p>
+                    
+                    <ul class="text-left space-y-3 mb-8 text-sm text-slate-300">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-400"></i> Penerbitan Prosiding (e-ISBN)</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-400"></i> Penyertaan Sesi Pembentangan</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-400"></i> E-Sijil Penyertaan & Pembentangan</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-400"></i> Peluang Memenangi Anugerah</li>
+                    </ul>
+                    <a href="#" class="btn-gold py-3 rounded-xl font-bold w-full" onclick="alert('Borang pendaftaran akan dibuka pada 1 Mac 2026.')">Daftar Sekarang</a>
+                </div>
+
+                <!-- Format Penulisan -->
+                <div id="garispanduan" class="lg:w-2/3 glass-card rounded-3xl p-8 md:p-12">
+                    <h3 class="font-display text-3xl font-bold text-white mb-6">Garis Panduan Penyerahan</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fa-solid fa-pen-nib text-accent-pink text-xl"></i>
+                                <h4 class="font-bold text-lg text-white">Gaya Penulisan</h4>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Semua kertas kerja hendaklah ditulis mengikut gaya penulisan <strong>APA (American Psychological Association)</strong>, edisi terkini. Format penulisan mestilah mematuhi templat rasmi.
+                            </p>
+                            <a href="#" class="text-uitm-gold text-sm font-semibold hover:underline flex items-center gap-2" onclick="alert('Pautan muat turun templat akan tersedia kelak.')">
+                                <i class="fa-solid fa-download"></i> Muat Turun Templat Word
+                            </a>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fa-solid fa-language text-accent-cyan text-xl"></i>
+                                <h4 class="font-bold text-lg text-white">Bahasa Medium</h4>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Penulisan manuskrip dan pembentangan lisan diterima dalam <strong>Bahasa Malaysia</strong> atau <strong>Bahasa Inggeris</strong> sahaja.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+                        <div class="flex gap-4">
+                            <i class="fa-solid fa-circle-info text-uitm-gold text-xl mt-1"></i>
+                            <p class="text-sm text-slate-300">
+                                <strong>Penting:</strong> Kertas kerja yang tidak mematuhi format templat berhak dikembalikan untuk pembetulan sebelum dipertimbangkan bagi penerbitan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATURCARA PROGRAM -->
+    <section id="aturcara" class="py-20 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl font-bold text-white">Tentatif Program</h2>
+                <p class="mt-2 text-slate-400">1 Oktober 2026 (Khamis) | Hibrid, UiTM Kampus Tapah</p>
+            </div>
+
+            <div class="glass-panel rounded-2xl overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-800 text-uitm-gold text-sm uppercase tracking-wider">
+                            <th class="p-4 border-b border-slate-700 w-1/3">Masa</th>
+                            <th class="p-4 border-b border-slate-700 w-2/3">Aktiviti</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-300 divide-y divide-slate-700/50">
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="p-4 font-semibold text-white">8.00 - 8.30 pagi</td>
+                            <td class="p-4">Pendaftaran Peserta</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="p-4 font-semibold text-white">8.30 - 9.00 pagi</td>
+                            <td class="p-4">Ucapan Aluan dan Perasmian Kolokium</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors bg-uitm-gold/5">
+                            <td class="p-4 font-semibold text-uitm-gold">9.00 - 12.30 tengah hari</td>
+                            <td class="p-4"><strong class="text-white">Sesi Selari Pembentangan</strong> <br><span class="text-sm text-slate-400">(Kajian Lengkap dan Penyelidikan Awal)</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="p-4 font-semibold text-white">12.30 - 2.00 petang</td>
+                            <td class="p-4 text-slate-400 italic">Rehat dan Makan Tengah Hari</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors bg-uitm-gold/5">
+                            <td class="p-4 font-semibold text-uitm-gold">2.00 - 4.30 petang</td>
+                            <td class="p-4"><strong class="text-white">Sambungan Sesi Selari Pembentangan dan Diskusi</strong></td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/30 transition-colors">
+                            <td class="p-4 font-semibold text-white">4.30 - 5.00 petang</td>
+                            <td class="p-4 font-medium text-accent-pink">Penyampaian Anugerah dan Majlis Penutup</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAWATANKUASA SECTION -->
+    <section class="py-20 bg-dark-card/30 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-white">Jawatankuasa Pengelola</h2>
+                <div class="h-1 w-20 bg-uitm-gold mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                <!-- Penasihat -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-slate-700 flex items-center justify-center text-3xl text-slate-400 mb-4 border-2 border-slate-500 overflow-hidden">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white">Dr. Nurul Hafizah Zainal Abidin</h3>
+                    <p class="text-uitm-gold text-sm font-semibold uppercase tracking-wider mb-2">Penasihat</p>
+                </div>
+                
+                <!-- Pengarah -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center border-uitm-gold/30">
+                    <div class="w-24 h-24 rounded-full bg-slate-700 flex items-center justify-center text-4xl text-slate-400 mb-4 border-2 border-uitm-gold overflow-hidden">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-white">Dr. Faiz Zulkifli</h3>
+                    <p class="text-uitm-gold text-sm font-semibold uppercase tracking-wider mb-2">Pengarah Program</p>
+                </div>
+
+                <!-- Timb. Pengarah -->
+                <div class="glass-card p-6 rounded-2xl flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-slate-700 flex items-center justify-center text-3xl text-slate-400 mb-4 border-2 border-slate-500 overflow-hidden">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white">Dr. Mohammad Nasir Abdullah</h3>
+                    <p class="text-uitm-gold text-sm font-semibold uppercase tracking-wider mb-2">Timbalan Pengarah</p>
+                </div>
+            </div>
+
+            <div class="mt-10 text-center">
+                <p class="text-slate-400 text-sm">Bersama barisan Setiausaha, Bendahari, AJK Pendaftaran, Penerbitan, Teknikal, Promosi dan Makanan FSKM UiTM Cawangan Perak.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#05080f] border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-uitm-purple rounded-full filter blur-[100px] opacity-40"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Branding -->
+                <div>
+                    <img src="LogoUiTM.png" onerror="this.src='https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/UiTM_logo.svg/1200px-UiTM_logo.svg.png';" alt="Logo UiTM" class="h-12 bg-slate-200 p-2 rounded-md mb-6">
+                    <h3 class="font-display font-bold text-xl text-white mb-2">Kolokium Penyelidikan FSKM 2026</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                        Menyediakan platform pembentangan kajian kuantitatif bagi memperkukuh budaya penyelidikan dan penerbitan ilmiah dalam kalangan ahli akademik.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-white mb-6 uppercase tracking-wider text-sm border-l-2 border-uitm-gold pl-3">Pautan Pantas</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#utama" class="hover:text-uitm-gold transition-colors">Utama</a></li>
+                        <li><a href="#subtema" class="hover:text-uitm-gold transition-colors">Sub-Tema Kolokium</a></li>
+                        <li><a href="#garispanduan" class="hover:text-uitm-gold transition-colors">Garis Panduan Penyerahan</a></li>
+                        <li><a href="#aturcara" class="hover:text-uitm-gold transition-colors">Aturcara Program</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-bold text-white mb-6 uppercase tracking-wider text-sm border-l-2 border-uitm-gold pl-3">Hubungi Penganjur</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-uitm-gold"></i>
+                            <span>Fakulti Sains Komputer dan Matematik (FSKM),<br>Universiti Teknologi MARA (UiTM),<br>Cawangan Perak Kampus Tapah,<br>Perak Darul Ridzuan, Malaysia.</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-uitm-gold"></i>
+                            <a href="mailto:sekretariat.fskm@uitm.edu.my" class="hover:text-white transition-colors">sekretariat.fskm@uitm.edu.my</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>&copy; 2026 Fakulti Sains Komputer dan Matematik, UiTM Cawangan Perak. Hak cipta terpelihara.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook text-lg"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-twitter text-lg"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar blur on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-lg', 'bg-dark-bg/80');
+                nav.classList.remove('border-transparent');
+            } else {
+                nav.classList.remove('shadow-lg', 'bg-dark-bg/80');
+            }
+        });
+
+        // Countdown Timer Logic
+        // Set event date to Oct 1, 2026 08:00:00
+        const countDownDate = new Date("Oct 1, 2026 08:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
