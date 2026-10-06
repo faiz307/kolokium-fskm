@@ -2,6 +2,9 @@
 <html lang="ms" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=748eff9e-2919-4a9e-873c-5b788fd15e08
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laman Rasmi | Kolokium Penyelidikan FSKM 2026</title>
 
@@ -137,12 +140,13 @@
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
+                <div class="hidden md:flex lg:gap-6 gap-3 items-center">
                     <a href="#utama" class="text-sm font-medium hover:text-uitm-gold transition-colors">Utama</a>
                     <a href="#mengenai" class="text-sm font-medium hover:text-uitm-gold transition-colors">Mengenai</a>
                     <a href="#subtema" class="text-sm font-medium hover:text-uitm-gold transition-colors">Tema</a>
                     <a href="#garismasa" class="text-sm font-medium hover:text-uitm-gold transition-colors">Garis Masa</a>
                     <a href="#aturcara" class="text-sm font-medium hover:text-uitm-gold transition-colors">Aturcara</a>
+                    <a href="#prosiding" class="text-sm font-medium hover:text-uitm-gold transition-colors">Buku Prosiding</a>
                     <a href="https://forms.gle/kXrsjEpGCeHaKnZJ6" target="_blank" rel="noopener"
                        class="btn-gold px-6 py-2.5 rounded-full font-bold text-sm">Daftar Sekarang</a>
                 </div>
@@ -163,6 +167,7 @@
                 <a href="#mengenai" class="block px-3 py-2 text-base font-medium text-white hover:text-uitm-gold">Mengenai</a>
                 <a href="#subtema" class="block px-3 py-2 text-base font-medium text-white hover:text-uitm-gold">Tema</a>
                 <a href="#garismasa" class="block px-3 py-2 text-base font-medium text-white hover:text-uitm-gold">Garis Masa</a>
+                <a href="#prosiding" class="block px-3 py-2 text-base font-medium text-white hover:text-uitm-gold">Buku Prosiding</a>
                 <a href="https://forms.gle/kXrsjEpGCeHaKnZJ6" target="_blank" rel="noopener"
                    class="block px-3 py-2 text-base font-medium text-uitm-gold font-bold">Daftar Sekarang</a>
             </div>
@@ -731,6 +736,29 @@
         </div>
     </section>
 
+    <!-- BUKU PROSIDING -->
+    <section id="prosiding" class="py-20 border-t border-white/10 relative" style="scroll-margin-top:6rem">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl overflow-hidden">
+                <div class="p-6 md:p-10">
+                    <p class="text-uitm-gold text-sm font-semibold uppercase tracking-wider mb-3"><i class="fa-solid fa-book-open mr-2" aria-hidden="true"></i>Penerbitan Kolokium</p>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold mb-5">Buku Prosiding FSKM 2026</h2>
+                    <p class="text-xl text-slate-200 leading-relaxed mb-4">Proceedings of Research Colloquium Faculty of Computer and Mathematical Sciences FSKM 2026</p>
+                    <p class="text-slate-300 leading-relaxed mb-6">Himpunan 22 kertas penyelidikan Kolokium FSKM 2026, anjuran Fakulti Sains Komputer dan Matematik, Universiti Teknologi MARA Cawangan Perak, Kampus Tapah.</p>
+                    <dl class="grid sm:grid-cols-2 gap-5 mb-8">
+                        <div><dt class="text-slate-400 text-sm mb-1">e-ISBN</dt><dd class="text-uitm-gold font-bold text-lg">978-967-2776-74-1</dd></div>
+                        <div><dt class="text-slate-400 text-sm mb-1">Penerbit</dt><dd class="font-semibold text-lg">Unit Penerbitan UiTM Perak</dd></div>
+                    </dl>
+                    <a href="https://drive.google.com/file/d/1KOq1QM9vvAQUyHLlQQ_pM52diYtdAggH/view?pli=1" target="_blank" rel="noopener noreferrer" class="btn-gold inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-bold"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Baca Buku Prosiding<span class="sr-only"> (tab baharu)</span></a>
+                    <p class="text-sm text-slate-300 mt-4">Jika pratonton tidak dipaparkan, gunakan butang di atas untuk membuka PDF di Google Drive.</p>
+                </div>
+                <div class="px-4 pb-4 md:px-10 md:pb-10">
+                    <iframe src="https://drive.google.com/file/d/1KOq1QM9vvAQUyHLlQQ_pM52diYtdAggH/preview" title="Buku Prosiding Kolokium FSKM 2026" loading="lazy" class="w-full rounded-xl border border-white/10 bg-slate-900" style="height:70vh;min-height:420px"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="bg-[#05080f] border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
         <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-uitm-purple rounded-full filter blur-[100px] opacity-40"></div>
@@ -761,6 +789,7 @@
                         <li><a href="#subtema" class="hover:text-uitm-gold transition-colors">Sub-Tema Kolokium</a></li>
                         <li><a href="#garispanduan" class="hover:text-uitm-gold transition-colors">Garis Panduan Penyerahan</a></li>
                         <li><a href="#aturcara" class="hover:text-uitm-gold transition-colors">Aturcara Program</a></li>
+                        <li><a href="#prosiding" class="hover:text-uitm-gold transition-colors">Buku Prosiding</a></li>
                         <li>
                             <a href="https://docs.google.com/document/d/1ejtRMp8zrwsJ80wVIXXto3peNsmUdmio/edit?usp=sharing&ouid=117360180868665748803&rtpof=true&sd=true"
                                target="_blank" rel="noopener" class="hover:text-uitm-gold transition-colors">
